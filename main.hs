@@ -1,13 +1,16 @@
 {-# LANGUAGE NamedFieldPuns #-}
 
-import Data.Maybe
 import qualified Solutions.Day01 as Day01
+
+import Data.Maybe
 import System.Environment
 import Text.Printf
 
 
 days :: [String -> IO ()]
-days = [Day01.solution]
+days = [
+  Day01.solution
+  ]
 
 data Args = Args
   { day :: Int,
