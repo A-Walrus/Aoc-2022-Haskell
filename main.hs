@@ -1,6 +1,7 @@
 {-# LANGUAGE NamedFieldPuns #-}
 
 import qualified Solutions.Day01 as Day01
+import qualified Solutions.Day02 as Day02
 
 import Data.Maybe
 import System.Environment
@@ -9,7 +10,8 @@ import Text.Printf
 
 days :: [String -> IO ()]
 days = [
-  Day01.solution
+  Day01.solution,
+  Day02.solution
   ]
 
 data Args = Args
