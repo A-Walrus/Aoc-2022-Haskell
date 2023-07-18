@@ -2,14 +2,24 @@
 
 module Base where
 
-import Debug.Trace
 import Data.Bifunctor
+import Debug.Trace
 
 debug :: Show a => String -> a -> a
 debug s v = trace (s ++ ": " ++ show v) v
 
 dMap f = bimap f f
 
+type Pos = (Int, Int)
+
+add :: Pos -> Pos -> Pos
+add a = uncurry bimap (dMap (+) a)
+
+y :: Pos -> Int
+y = snd
+
+x :: Pos -> Int
+x = fst
 
 data Day a b c = Day {parse' :: String -> a, part1' :: a -> b, part2' :: a -> c}
 
@@ -20,3 +30,6 @@ run Day {parse', part1', part2'} s = do
   print (part1' parsed)
   putStr "Part2: "
   print (part2' parsed)
+
+dummySolution :: String -> IO ()
+dummySolution = const (putStrLn "Dummy Solution")
