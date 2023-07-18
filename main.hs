@@ -2,6 +2,7 @@
 
 import qualified Solutions.Day01 as Day01
 import qualified Solutions.Day02 as Day02
+import qualified Solutions.Day03 as Day03
 
 import Data.Maybe
 import System.Environment
@@ -11,7 +12,8 @@ import Text.Printf
 days :: [String -> IO ()]
 days = [
   Day01.solution,
-  Day02.solution
+  Day02.solution,
+  Day03.solution
   ]
 
 data Args = Args
