@@ -1,34 +1,35 @@
 {-# LANGUAGE NamedFieldPuns #-}
 
 import Base
+import Data.Maybe
 import qualified Solutions.Day01 as Day01
 import qualified Solutions.Day02 as Day02
 import qualified Solutions.Day03 as Day03
 import qualified Solutions.Day04 as Day04
 import qualified Solutions.Day15 as Day15
-
-import Data.Maybe
+import qualified Solutions.Day17 as Day17
 import System.Environment
 import Text.Printf
 
-
 days :: [String -> IO ()]
-days = [
-  Day01.solution,
-  Day02.solution,
-  Day03.solution,
-  Day04.solution,
-  dummySolution, -- 05
-  dummySolution, -- 06
-  dummySolution, -- 07
-  dummySolution, -- 08
-  dummySolution, -- 09
-  dummySolution, -- 10
-  dummySolution, -- 11
-  dummySolution, -- 12
-  dummySolution, -- 13
-  dummySolution, -- 14
-  Day15.solution
+days =
+  [ Day01.solution,
+    Day02.solution,
+    Day03.solution,
+    Day04.solution,
+    dummySolution, -- 05
+    dummySolution, -- 06
+    dummySolution, -- 07
+    dummySolution, -- 08
+    dummySolution, -- 09
+    dummySolution, -- 10
+    dummySolution, -- 11
+    dummySolution, -- 12
+    dummySolution, -- 13
+    dummySolution, -- 14
+    Day15.solution,
+    dummySolution, -- 16
+    Day17.solution
   ]
 
 data Args = Args
