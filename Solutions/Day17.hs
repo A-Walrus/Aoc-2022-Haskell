@@ -20,10 +20,11 @@ parse = cycle . map parseChar . init
     parseChar '>' = R
 
 part1 :: Parsed -> Int
-part1 dirs = tallest (states !! 2022)
+part1 dirs = tallest (states dirs !! 2022)
+
+states dirs = map fst $ scanl' (flip ($)) (Set.empty, dirs) x
   where
     x = map (uncurry . process) shapes
-    states = map fst $ scanl' (flip ($)) (Set.empty, dirs) x
 
 part2 :: Parsed -> Int
 part2 = undefined
@@ -50,7 +51,7 @@ shapes =
       ]
 
 tallest :: State -> Int
-tallest = maybe 0 (+1) . Set.lookupMax . Set.map y
+tallest = maybe 0 (+ 1) . Set.lookupMax . Set.map y
 
 move :: Pos -> Shape -> Shape
 move p = Set.map (add p)
