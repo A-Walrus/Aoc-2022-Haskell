@@ -6,6 +6,7 @@ import qualified Solutions.Day01 as Day01
 import qualified Solutions.Day02 as Day02
 import qualified Solutions.Day03 as Day03
 import qualified Solutions.Day04 as Day04
+import qualified Solutions.Day05 as Day05
 import qualified Solutions.Day15 as Day15
 import qualified Solutions.Day17 as Day17
 import System.Environment
@@ -17,7 +18,7 @@ days =
     Day02.solution,
     Day03.solution,
     Day04.solution,
-    dummySolution, -- 05
+    Day05.solution,
     dummySolution, -- 06
     dummySolution, -- 07
     dummySolution, -- 08
