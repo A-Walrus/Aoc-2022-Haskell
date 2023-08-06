@@ -9,6 +9,7 @@ import qualified Solutions.Day04 as Day04
 import qualified Solutions.Day05 as Day05
 import qualified Solutions.Day06 as Day06
 import qualified Solutions.Day15 as Day15
+import qualified Solutions.Day16 as Day16
 import qualified Solutions.Day17 as Day17
 import System.Environment
 import Text.Printf
@@ -30,7 +31,7 @@ days =
     dummySolution, -- 13
     dummySolution, -- 14
     Day15.solution,
-    dummySolution, -- 16
+    Day16.solution,
     Day17.solution
   ]
 
