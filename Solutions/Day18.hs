@@ -18,13 +18,14 @@ part1 :: Parsed -> Int
 part1 set = Set.fold (\p acc -> acc + 6 - numNeighbors set p) 0 set
 
 part2 :: Parsed -> Int
-part2 blocks = length (fst a)
+part2 blocks = length (fst last)
   where
-    a = fromJust $ find (\(_, l) -> null l) thing
-    face = (Set.findMax blocks, (1, 0, 0))
-    thing = iterate layer (Set.fromList [face], [face])
-    layer :: (Set.Set Face, [Face]) -> (Set.Set Face, [Face])
-    layer (set, faces) = (Set.union set (Set.fromList l), l)
+    last = fromJust $ find (\(_, l) -> null l) steps
+    startFace = (Set.findMax blocks, (1, 0, 0))
+    steps = iterate step (Set.fromList [startFace], [startFace])
+
+    step :: (Set.Set Face, [Face]) -> (Set.Set Face, [Face]) -- step in BFS
+    step (set, faces) = (Set.union set (Set.fromList l), l)
       where
         l = filter (`Set.notMember` set) $ concatMap (spread blocks) faces
 
@@ -50,15 +51,14 @@ opposite (x, y, z) = (-x, -y, -z)
 perpendicular :: Dir -> [Dir]
 perpendicular d = filter (`notElem` [d, opposite d]) offsets
 
--- 4
 spread :: Set.Set Pos -> Face -> [Face]
-spread set (pos, dir) = map f dirs
+spread set (pos, normal) = map f dirs
   where
-    dirs = perpendicular dir
+    dirs = perpendicular normal
     f :: Dir -> Face
     f d
       | add pos diag `Set.member` set = (add pos diag, opposite d)
-      | add pos d `Set.member` set = (add pos d, dir)
+      | add pos d `Set.member` set = (add pos d, normal)
       | otherwise = (pos, d)
       where
-        diag = add d dir
+        diag = add d normal
