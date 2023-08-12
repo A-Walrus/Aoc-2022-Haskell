@@ -50,10 +50,7 @@ visibleDir :: [[Int]] -> [[Bool]]
 visibleDir = map (visibleRow $ -1)
 
 visibleRow :: Int -> [Int] -> [Bool]
-visibleRow _ [] = []
-visibleRow n (x : xs)
-  | x > n = True : visibleRow x xs
-  | otherwise = False : visibleRow n xs
+visibleRow n = fst . foldr (\x (acc, n) -> ((x > n) : acc, max n x)) ([], n)
 
 scenicScores :: [[Int]] -> [[Int]]
 scenicScores g = vals
