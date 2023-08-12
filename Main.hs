@@ -11,6 +11,7 @@ import Solutions.Day06 qualified as Day06
 import Solutions.Day07 qualified as Day07
 import Solutions.Day08 qualified as Day08
 import Solutions.Day09 qualified as Day09
+import Solutions.Day10 qualified as Day10
 import Solutions.Day15 qualified as Day15
 import Solutions.Day16 qualified as Day16
 import Solutions.Day17 qualified as Day17
@@ -29,7 +30,7 @@ days =
     Day07.solution,
     Day08.solution,
     Day09.solution,
-    dummySolution, -- 10
+    Day10.solution,
     dummySolution, -- 11
     dummySolution, -- 12
     dummySolution, -- 13

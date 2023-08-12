@@ -23,13 +23,26 @@ x = fst
 
 data Day a b c = Day {parse' :: String -> a, part1' :: a -> b, part2' :: a -> c}
 
-run :: (Show b, Show c) => Day a b c -> String -> IO ()
+run :: (Print b, Print c) => Day a b c -> String -> IO ()
 run Day {parse', part1', part2'} s = do
   let parsed = parse' s
   putStr "Part 1: "
-  print (part1' parsed)
+  putStrLn $ string  (part1' parsed)
   putStr "Part 2: "
-  print (part2' parsed)
+  putStrLn $ string  (part2' parsed)
 
 dummySolution :: String -> IO ()
 dummySolution = const (putStrLn "Dummy Solution")
+
+class Print a where
+  string :: a -> String
+
+instance Print String where
+  string = id
+
+instance Print Int where
+  string = show
+
+instance Print Integer where
+  string = show
+
