@@ -2,17 +2,17 @@
 
 import Base
 import Data.Maybe
-import qualified Solutions.Day01 as Day01
-import qualified Solutions.Day02 as Day02
-import qualified Solutions.Day03 as Day03
-import qualified Solutions.Day04 as Day04
-import qualified Solutions.Day05 as Day05
-import qualified Solutions.Day06 as Day06
-import qualified Solutions.Day07 as Day07
-import qualified Solutions.Day15 as Day15
-import qualified Solutions.Day16 as Day16
-import qualified Solutions.Day17 as Day17
-import qualified Solutions.Day18 as Day18
+import Solutions.Day01 qualified as Day01
+import Solutions.Day02 qualified as Day02
+import Solutions.Day03 qualified as Day03
+import Solutions.Day04 qualified as Day04
+import Solutions.Day05 qualified as Day05
+import Solutions.Day06 qualified as Day06
+import Solutions.Day07 qualified as Day07
+import Solutions.Day15 qualified as Day15
+import Solutions.Day16 qualified as Day16
+import Solutions.Day17 qualified as Day17
+import Solutions.Day18 qualified as Day18
 import System.Environment
 import Text.Printf
 
@@ -38,22 +38,36 @@ days =
     Day18.solution
   ]
 
-data Args = Args
-  { day :: Int,
-    path :: String
-  }
+data Args
+  = RunDay
+      { day :: Int,
+        path :: Maybe String
+      }
+  | All
 
 parseArgs :: [String] -> Args
-parseArgs [day, path] = Args {day = read day, path}
-parseArgs [day] = Args {day = read day, path = "input"}
+parseArgs [] = All
+parseArgs ["all"] = All
+parseArgs [day] = RunDay {day = read day, path = Nothing}
+parseArgs [day, path] = RunDay {day = read day, path = Just path}
 parseArgs _ = error "Not enough args"
 
 main :: IO ()
 main = do
   a <- getArgs
-  let Args {day, path} = parseArgs a
+  let args = parseArgs a
+  runArgs args
+
+runArgs :: Args -> IO ()
+runArgs RunDay {day, path} = runDay day path
+runArgs All = mapM_ (`runDay` Nothing) [1..]
+
+runDay :: Int -> Maybe String -> IO ()
+runDay day path = do
   printf "AOC Day %d\n" day
-  let s = days !! (day - 1)
-  let filePath = printf "inputs/%02d/%s" day path
+  let path' = fromMaybe "input" path
+  let solution = days !! (day - 1)
+  let filePath = printf "inputs/%02d/%s" day path'
   contents <- readFile filePath
-  s contents
+  solution contents
+  putStrLn ""
