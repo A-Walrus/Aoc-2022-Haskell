@@ -65,7 +65,7 @@ runArgs All = mapM_ (`runDay` Nothing) [1..]
 
 runDay :: Int -> Maybe String -> IO ()
 runDay day path = do
-  printf "AOC Day %d\n" day
+  printf " -- AOC Day %d -- \n" day
   let path' = fromMaybe "input" path
   let solution = days !! (day - 1)
   let filePath = printf "inputs/%02d/%s" day path'

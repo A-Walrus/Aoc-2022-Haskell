@@ -26,9 +26,9 @@ data Day a b c = Day {parse' :: String -> a, part1' :: a -> b, part2' :: a -> c}
 run :: (Show b, Show c) => Day a b c -> String -> IO ()
 run Day {parse', part1', part2'} s = do
   let parsed = parse' s
-  putStr "Part1: "
+  putStr "Part 1: "
   print (part1' parsed)
-  putStr "Part2: "
+  putStr "Part 2: "
   print (part2' parsed)
 
 dummySolution :: String -> IO ()
